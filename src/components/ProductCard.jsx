@@ -1,4 +1,3 @@
-// src/components/ProductCard.jsx
 import React, { useState } from 'react';
 import './ProductCard.css';
 
@@ -19,9 +18,17 @@ const ProductCard = ({ product }) => {
     window.open(url, "_blank");
   };
 
-  const copyLink = (platform) => {
+  const openInstagram = () => {
+    window.open("https://www.instagram.com/", "_blank");
+  };
+
+  const openSnapchat = () => {
+    window.open("https://www.snapchat.com/", "_blank");
+  };
+
+  const copyToClipboard = () => {
     navigator.clipboard.writeText(product.url).then(() => {
-      alert(`Link copied! You can paste it in ${platform}.`);
+      alert("Product link copied to clipboard!");
     });
   };
 
@@ -35,10 +42,21 @@ const ProductCard = ({ product }) => {
 
       {showShare && (
         <div className="share-options">
-          <button onClick={shareOnWhatsApp}><i className="fab fa-whatsapp"></i></button>
-          <button onClick={shareOnFacebook}><i className="fab fa-facebook"></i></button>
-          <button onClick={() => copyLink('Instagram')}><i className="fab fa-instagram"></i></button>
-          <button onClick={() => copyLink('Snapchat')}><i className="fab fa-snapchat"></i></button>
+          <button onClick={shareOnWhatsApp} title="WhatsApp">
+            <i className="fab fa-whatsapp"></i>
+          </button>
+          <button onClick={shareOnFacebook} title="Facebook">
+            <i className="fab fa-facebook"></i>
+          </button>
+          <button onClick={openInstagram} title="Instagram">
+            <i className="fab fa-instagram"></i>
+          </button>
+          <button onClick={openSnapchat} title="Snapchat">
+            <i className="fab fa-snapchat"></i>
+          </button>
+          <button onClick={copyToClipboard} title="Copy Link">
+            <i className="fas fa-link"></i>
+          </button>
         </div>
       )}
     </div>
